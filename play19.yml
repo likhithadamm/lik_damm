@@ -1,4 +1,5 @@
 ---
+# we are in main 
 - name: Demonstrate  ansible variables
   hosts: localhost
   vars:
