@@ -1,5 +1,6 @@
 ---
-# we are in main 
+#hiii
+>>>>>>> 6e44a73984375ddb739f94d5cfc2f90d90b9e043
 - name: Demonstrate  ansible variables
   hosts: localhost
   vars:
