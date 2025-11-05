@@ -1,0 +1,22 @@
+---
+- name: creating a user by using prompt variables
+  hosts: localhost
+  vars_prompt:
+    - name: "groupname"
+      prompt: "Enter group name"
+      private: no
+  become: true
+  become_user: root
+  tasks:
+  - name: create group
+    ansible.builtin.group:
+      name: "{{ groupname }}"
+      state: present
+  - name: add user to group
+    ansible.builtin.user:
+      name: alc-user
+      group: "{{ groupname }}"
+      append: yes
+      state: present
+...
+

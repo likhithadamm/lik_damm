@@ -1,0 +1,19 @@
+---
+- name: Demonstrate prompt variables 
+  hosts: localhost
+  vars_prompt:
+    - name: "db_name"
+      prompt: "Enter database name"
+      private: no
+    - name: db_pass
+      prompt: "Enter dbpassword" 
+      private: yes
+    - name: db_host
+      prompt: "Enter db hostname"
+      private: no
+      default: likhitha.alclabs.in
+  tasks:
+  - name: to print the variable 
+    ansible.builtin.debug:
+      msg: "you entered db name as {{db_name}} and its password as {{db_pass}} dbhost as {{db_host}}"
+...

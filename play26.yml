@@ -1,0 +1,39 @@
+---
+- name: creating user by prompt variables
+  hosts: localhost
+  vars_prompt:
+  - name: "username"
+    prompt: "Enter username"
+    private: no
+  - name: uid
+    prompt: "Enter user id"
+    private: no
+  - name: user_pass
+    prompt: "Enter password"
+    private: yes
+  - name: comment
+    prompt: "Enter comment"
+    private: no
+  - name: shell
+    prompt: "Enter user shell"
+    private: no
+    default: /bin/bash
+  become: true
+  become_user: root
+  gather_facts: no
+  tasks:
+  - name: create user
+    ansible.builtin.user:
+      name: "{{ username }}"
+      uid: "{{ uid }}"
+      password: "{{ user_pass }}"
+      comment: "{{ comment }}"
+      shell: "{{ shell }}"
+      state: present
+  - name: print user details
+    ansible.builtin.debug:
+      msg: "User {{ username }} with uid {{ uid }} and comment '{{ comment }}' has been created with shell {{ shell }}."
+  - name: print user password
+    ansible.builtin.debug:
+      msg: "User password is {{ user_pass }}."
+...

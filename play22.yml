@@ -1,0 +1,14 @@
+---
+- name: Demonstrate variables in Ansible
+#Get variables defined in the file
+  hosts: 
+   - 192.168.1.31
+   - 192.168.1.32
+   - 192.168.1.40
+  vars_files:
+    - vars/lik.txt
+  tasks:
+  - name: print variable value
+    ansible.builtin.debug:
+      msg: "OS is : {{ os }}, color: {{ color}}"
+...

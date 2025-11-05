@@ -1,0 +1,13 @@
+---
+- name: Demonstrate command module and capture its output and then print 
+  hosts: localhost
+  gather_facts: no
+  tasks:
+   - name: To test the variables
+     command:
+      cmd: /usr/bin/uptime
+     register: myvar
+   - name: print value of the register variable
+     debug:
+      msg: "{{myvar}}"
+...
